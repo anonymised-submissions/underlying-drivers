@@ -1,0 +1,41 @@
+                                README file
+
+This archive provides analysis scripts and datasets for
+the standalone analyses of 3 climatic series, marine sedimenation
+area, global temperatire and sealevel. It also contains connection
+analysis scripts for these 3 series plus fragmentation rate versus
+the 3 marine life diversification rate series we have (origination,
+extinction and sampling).
+
+Each connection analysis is divided into 3 parts, in order to
+overcome numerical instability issues:
+
+<climatic>_vs_diversity.R - This is a script that performs connection
+analysis between one climatic series and the 3 diversification series.
+<climatic> stands in for either fragementation rate ("fragrate"), marine
+sedimentaiton area ("marinearea"), sealevel ("sealevel") or global
+temperature ("globaltemperature"). At the stat, a run number is defined
+("run.nr=1"). This can easily be replaced by a different run number so
+that the result file is stored with a different name.
+
+<climatic>_vs_diversity_collect.R - When <climatic>_vs_diversity.R
+has been run a sufficient number of times with different run numbers,
+this script collects the results and extracts the run with the highest
+maximum likelihood for each model. This is then stored in a file
+called "<climatic>_vs_diversity_collected.Rdata".
+
+<climatic>_vs_diversity_collected.R - Fetches the  best estimated model
+for each connection model from the file
+"<climatic>_vs_diversity_collected.Rdata", see
+<climatic>_vs_diversity_collect.R. Then performs chi-squared likelihood
+ratio test on each of these conneciton models. This is then compared
+to a Bonferroni-corrected limit, 0.05/54 (where 54 is the number of
+p-values calculated).
+
+
+The input datasets are mostly stored in Rdata files, though fragementation
+rate is in a csv file.
+
+
+
+
